@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #c2c1c1;
+    margin: 0;
+}
+h1{
+    margin: 0;
+    padding: 30px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    letter-spacing: 2px;
+}
+.faq-container{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.faq{
+    background-color: transparent;
+    border: 1px solid rgb(154, 132, 132);
+    border-radius: 15px;
+    margin: 20px 0;
+    padding: 30px;
+    overflow: hidden;
+    transition: 0.3s ease;
+    position: relative;
+}
+.faq.active {
+    background-color: white;
+    box-shadow: 3px 3px 10px black;
+    border: 2px solid orange;
+}
+.faq.active::before, .faq.active::after{
+    content: "\f075";
+    font-family: "Font Awesome 6 free";
+    color: rgba(25, 154, 25, 0.561);
+    font-size: 7rem;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 0;
+    opacity: 0.4;
+}
+
+.faq.active::before{
+    color: rgba(13, 13, 111, 0.692);
+    top: -10px;
+    left: -30px;
+    transform: rotateY(180deg);
+}
+.faq-title{
+    margin: 0 35px 0 0;
+    transition: 0.3s ease;
+}
+
+.faq.active .faq-title{
+    color: orange;
+}
+
+.faq-text{
+    display: none;
+    margin: 30px 0 0;
+}
+
+.faq.active .faq-text{
+    display: block;
+}
+
+.faq-toggle{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding: 0;
+    position: absolute;
+    top: 30px;
+    right: 25px;
+    transition: 0.3s ease;
+}
+
+.faq.active .faq-toggle{
+    color: orange;
+}
+
+.faq-toggle .fa-xmark{
+    display: none;
+}
+
+.faq.active .faq-toggle .fa-xmark{
+    display: block;
+}
+
+.faq.active .faq-toggle .fa-chevron-down{
+    display: none;
+}
+
+
+
+
+
