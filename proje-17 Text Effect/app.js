@@ -1,26 +1,41 @@
 var content = document.getElementById("content");
 var speedel = document.getElementById("speed");
-var text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In efficitur eleifend elit placerat fermentum. Pellentesque.";
-var idx = 1;
-var speed = 300/ speedel.value;
-writetext()
+var textQueue = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In efficitur eleifend elit placerat fermentum. Pellentesque.",
+    "A different text to be typed.",
+    "Yet another text for typing."
+];
+var currentTextIndex = 0;
+var idx = 0;
+var isDeleting = false;
+var speed = 300 / speedel.value;
+writetext();
+
 function writetext() {
-    content.innerText = text.slice(0, idx);
-    idx++
-    if (idx > text.length) {
-        idx = 1
+    var currentText = textQueue[currentTextIndex];
+    
+    if (isDeleting) {
+        currentText = currentText.slice(0, idx);
+        idx--;
+    } else {
+        currentText = currentText.slice(0, idx + 1);
+        idx++;
     }
-    setTimeout(writetext, speed)
-}
-function writeText() {
-    content.innerText = text.slice(0, idx)
-    idx++
-  
-    if (idx > text.length) {
-      idx = 1
+
+    content.innerText = currentText;
+
+    if (idx > currentText.length) {
+        isDeleting = true;
     }
-  
-    setTimeout(writeText, speed)
+
+    if (idx < 0) {
+        isDeleting = false;
+        currentTextIndex = (currentTextIndex + 1) % textQueue.length; // Sonraki metni seç
+    }
+
+    setTimeout(writetext, isDeleting ? speed / 2 : speed);
 }
 
-speedel.addEventListener("input" , (e) => (speed = 300 / e.target.value))
+speedel.addEventListener("input", (e) => {
+    speed = 300 / e.target.value;
+});
